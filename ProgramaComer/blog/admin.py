@@ -4,6 +4,6 @@ from .models import Post
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ("tittle","slug", "author", "created","updated")
-    prepopulated_fields = {"slug":("tittle",)}
+    list_display = ("title","slug", "author", "created","updated")
+    prepopulated_fields = {"slug":("title",)}
 # Register your models here.
