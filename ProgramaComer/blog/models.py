@@ -1,16 +1,21 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.urls import reverse
 
-# Create your models here.
 
 class Post(models.Model):
-    tittle = models.CharField(max_length=255)
-    slug = models.SlugField(max_length= 255, unique=True)
-    #slug para acesso da página
-    author = models.ForeignKey(User, on_delete = models.CASCADE)
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     body = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateField(auto_now= True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ("-created",)
 
     def __str__(self):
-        return self.tittle
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog:detail", kwargs={"slug": self.slug})
