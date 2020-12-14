@@ -8,3 +8,6 @@ class Post(models.Model):
     slug = models.SlugField(max_length= 255, unique=True)
     #slug para acesso da página
     author = models.ForeignKey(User, on_delete = models.CASCADE)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateField(auto_now= True)
